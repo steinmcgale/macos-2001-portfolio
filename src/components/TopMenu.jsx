@@ -6,7 +6,7 @@ const TopMenu = ({ onOpenWindow }) => {
   const [time, setTime] = useState(new Date());
   const [activeMenu, setActiveMenu] = useState(null);
 
-  // ⏰ Update time every second
+  //  Update time every second
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
@@ -32,13 +32,13 @@ const TopMenu = ({ onOpenWindow }) => {
   const handleDropdownClick = (windowType, windowTitle) => {
     // Close the dropdown menu
     setActiveMenu(null);
-    // Tell parent component to open a window (we'll connect this later)
+    // Tell parent component to open a window (I will connect this later)
     if (onOpenWindow) {
       onOpenWindow(windowType, windowTitle);
     }
   };
 
-  // Close dropdown when clicking elsewhere - NEW CONCEPT: Event Handling
+  // Close dropdown when clicking elsewhere 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest('.menu-item')) {
@@ -50,7 +50,7 @@ const TopMenu = ({ onOpenWindow }) => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Menu configurations - NEW CONCEPT: Data Structure
+  // Menu configurations 
   const menuItems = {
     file: [
       { label: 'About Me', action: () => handleDropdownClick('about', 'About Me') },
@@ -86,9 +86,9 @@ const TopMenu = ({ onOpenWindow }) => {
           <img src={appleLogo} alt="Apple" className="apple-logo" />
         </div>
         
-        <div className="app-name">Grab</div>
+        <div className="app-name">Finder</div>
         
-        {/* NEW CONCEPT: Dynamic Menu Rendering */}
+        {/*Dynamic Menu Rendering */}
         {Object.entries({
           file: 'File',
           edit: 'Edit', 
@@ -104,7 +104,7 @@ const TopMenu = ({ onOpenWindow }) => {
               {label}
             </div>
             
-            {/* NEW CONCEPT: Conditional Rendering */}
+            {/* Conditional Rendering */}
             {activeMenu === key && (
               <div className="dropdown-menu">
                 {menuItems[key].map((item, index) => (
