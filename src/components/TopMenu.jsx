@@ -64,7 +64,7 @@ const TopMenu = ({ onOpenWindow }) => {
     view: [
       { label: 'Portfolio', action: () => handleDropdownClick('Portfolio', 'Portfolio') },
       
-      { label: 'GitHub Repos', action: () => handleDropdownClick('github', 'GitHub') },
+      { label: 'GitHub', action: () => handleDropdownClick('github', 'GitHub') },
      
     ],
     window: [
@@ -82,7 +82,8 @@ const TopMenu = ({ onOpenWindow }) => {
   return (
     <div className="osx-menu-bar">
       <div className="menu-left">
-        <div className="apple-menu">
+        <div className="apple-menu"
+        onClick={() => handleDropdownClick('about', 'About This Mac')}>
           <img src={appleLogo} alt="Apple" className="apple-logo" />
         </div>
         
