@@ -6,13 +6,13 @@ const TopMenu = ({ onOpenWindow }) => {
   const [time, setTime] = useState(new Date());
   const [activeMenu, setActiveMenu] = useState(null);
 
-  //  Update time every second
+  
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Format time in OS X style
+  // Updated time format 
   const formattedTime = time.toLocaleString('en-US', {
     weekday: 'short',
     month: 'short',
@@ -22,13 +22,13 @@ const TopMenu = ({ onOpenWindow }) => {
     hour12: true
   });
 
-  // Handle menu clicks - NEW CONCEPT: State Management
+  
   const handleMenuClick = (menuName) => {
     // If clicking the same menu, close it. Otherwise, open the new one
     setActiveMenu(activeMenu === menuName ? null : menuName);
   };
 
-  // Handle dropdown item clicks - NEW CONCEPT: Props and Communication
+  // Handle dropdown item clicks 
   const handleDropdownClick = (windowType, windowTitle) => {
     // Close the dropdown menu
     setActiveMenu(null);
@@ -50,7 +50,7 @@ const TopMenu = ({ onOpenWindow }) => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Menu configurations 
+  
   const menuItems = {
     file: [
       { label: 'About Me', action: () => handleDropdownClick('about', 'About Me') },

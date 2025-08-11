@@ -7,9 +7,10 @@ const AboutThisMacWindow = ({ onClose }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
   useEffect(() => {
-    const width = 320;
-    const height = 240;
-    const top = window.innerHeight / 2 - height / 2 - 100;
+    const width = 300;
+    const height = 320;
+    const verticaloffset = 40;
+    const top = window.innerHeight / 2 - height / 2 - verticaloffset;
     const left = window.innerWidth / 2 - width / 2;
     setPosition({ top, left });
   }, []);
@@ -19,8 +20,8 @@ const AboutThisMacWindow = ({ onClose }) => {
       <div className="window-header">
   <div className="window-buttons">
     <button className="window-button red" onClick={onClose}></button>
-    <button className="window-button yellow"></button>
-    <button className="window-button green"></button>
+    <button className="window-button clear"></button>
+    <button className="window-button clear"></button>
   </div>
   <div className="window-title">About This Mac</div>
 </div>

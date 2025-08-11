@@ -1,4 +1,3 @@
-/* Mac OS X Menu Bar */
 .osx-menu-bar {
   position: fixed;
   top: 0;
@@ -11,6 +10,20 @@
     #d8d8d8 51%, 
     #d0d0d0 100%
   );
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.3) 0px,
+      rgba(255,255,255,0.3) 1px,
+      rgba(230,230,230,0.3) 1px,
+      rgba(230,230,230,0.3) 2px
+    ),
+    linear-gradient(to bottom, 
+      #f0f0f0 0%, 
+      #e8e8e8 50%, 
+      #d8d8d8 51%, 
+      #d0d0d0 100%
+    );
   border-bottom: 1px solid #999;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -59,7 +72,7 @@
   );
 }
 
-/* App Name */
+
 .app-name {
   font-weight: bold;
   padding: 0 12px;
@@ -69,7 +82,7 @@
   color: #333;
 }
 
-/* NEW: Menu Container for Dropdowns */
+/* Dropdowns */
 .menu-container {
   position: relative;
   height: 100%;
@@ -104,7 +117,7 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-/* NEW: Dropdown Menu Styles */
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -148,7 +161,7 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-/* Menu Extras (Right Side) */
+/* Menu time disply */
 .menu-extras {
   display: flex;
   align-items: center;
