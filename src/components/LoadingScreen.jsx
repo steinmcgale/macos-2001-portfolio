@@ -14,15 +14,19 @@ const LoadingScreen = () => {
   if (!show) return null;
 
   return (
-    <div className="loading-container">
-      <h1 className="loading-title">Connecting...</h1>
-      <p>This may take a moment.</p>
-      <div className="orbs">
-        <div className="orb"></div>
-        <div className="orb"></div>
+    <div className="loading-overlay">
+      <div className="loading-window">
+        <h1 className="loading-title">Connecting...</h1>
+        <p className="loading-sub">This may take a moment.</p>
+        
+        <div className="loading-orbs">
+          <div className="orb"></div>
+          <div className="orb"></div>
+        </div>
+
+        <p className="loading-sub">Disconnecting...</p>
+        <button className="aqua-button">Cancel</button>
       </div>
-      <p>Disconnecting...</p>
-      <button className="cancel-button">Cancel</button>
     </div>
   );
 };
