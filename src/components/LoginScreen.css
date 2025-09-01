@@ -1,0 +1,106 @@
+/* Fullscreen blue background (desktop wallpaper) */
+.login-background {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* White login box with stripes */
+.login-box {
+  background: repeating-linear-gradient(
+    to bottom,
+    #fdfdfd,
+    #fdfdfd 2px,
+    #f7f7f7 2px,
+    #f7f7f7 4px
+  );
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 500px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+
+.login-apple-logo {
+  width: 70px;
+  height: auto; 
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.5));
+  margin-bottom: 25px;
+}
+
+/* Titles */
+.login-title {
+  font-size: 32px;
+  font-family: 'Lucida Grande', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  color: #333;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+/* Profile picture */
+.profile {
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 0;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.profile-name {
+  font-size: 16px;
+  color: black;
+}
+
+/* Buttons */
+.login-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login-button {
+  background: linear-gradient(to bottom, #fefefe, #d9d9d9);
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: inset 0 1px #fff, 0 2px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.login-button:hover {
+  background: linear-gradient(to bottom, #fff, #cfcfcf);
+}
+
+.restart::before {
+  content: "⟲";
+  margin-right: 4px;
+}
+
+.shutdown::before {
+  content: "⏻";
+  margin-right: 4px;
+}
+
+
+
+

@@ -1,58 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import TopMenu from './components/TopMenu';
-import AboutThisMacWindow from './components/AboutThisMacWindow';
-import LoadingScreen from './components/LoadingScreen';
-import './App.css';
+// App.js
+import React, { useState } from "react";
+import TopMenu from "./components/TopMenu";
+import AboutThisMacWindow from "./components/AboutThisMacWindow";
+import LoginScreen from "./components/LoginScreen"; // new login screen
+import "./App.css";
 
 function App() {
-  const [loading, setLoading] = useState(true); // state for loading screen
+  const [loggedIn, setLoggedIn] = useState(false);
   const [openWindows, setOpenWindows] = useState([]);
 
-  // Runs once when App mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // 3 seconds loading time
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  // open window (About this Mac, etc.)
   const handleOpenWindow = (type, title) => {
-    const alreadyOpen = openWindows.some(win => win.type === type);
+    const alreadyOpen = openWindows.some((win) => win.type === type);
     if (!alreadyOpen) {
-      setOpenWindows([...openWindows, { type, title }]);
+      setOpenWindows([...openWindows, { id: Date.now(), type, title }]);
     }
   };
 
-  const handleCloseWindow = (type) => {
-    setOpenWindows(openWindows.filter(win => win.type !== type));
+  // close window
+  const handleCloseWindow = (id) => {
+    setOpenWindows(openWindows.filter((win) => win.id !== id));
   };
 
-  // If still loading, show loading screen only
-  if (loading) {
-    return <LoadingScreen />;
+  // if not logged in, show login screen only
+  if (!loggedIn) {
+    return <LoginScreen onLogin={() => setLoggedIn(true)} />;
   }
 
-  // Otherwise show the desktop
+  // once logged in, show desktop
   return (
     <div className="desktop">
       <TopMenu onOpenWindow={handleOpenWindow} />
-      {openWindows.map(win => {
-        if (win.type === 'about') {
-          return (
-            <AboutThisMacWindow
-              key={win.type}
-              onClose={() => handleCloseWindow(win.type)}
-            />
-          );
+
+      {openWindows.map((win) => {
+        switch (win.type) {
+          case "about":
+            return (
+              <AboutThisMacWindow
+                key={win.id}
+                onClose={() => handleCloseWindow(win.id)}
+              />
+            );
+          default:
+            return null;
         }
-        return null;
       })}
     </div>
   );
 }
 
 export default App;
+
+
+
 
 
 
