@@ -7,22 +7,32 @@ import profilePic from "../Images/Stein no background.png";
 
 const LoginScreen = ({ onLogin }) => {
   return (
-    <div className="login-background"
-    style={{ backgroundImage: `url(${background})` }}
+    <div
+      className="login-background"
+      style={{ backgroundImage: `url(${background})` }}
     >
       <div className="login-box">
-        <img src={appleLogo} alt="Apple Logo" className="login-apple-logo" />
-        <h1 className="login-title">Mac OS X</h1>
-        <p className="login-subtitle">Your Computer</p>
+        {/* Apple + titles */}
+        <img src={appleLogo} alt="Apple" className="login-apple-logo" />
+        <h1 className="system-title"><span className="mac-word">Mac</span> OS X</h1>
+        <div className="machine-name">Your Computer</div>
 
-        <div className="profile" onClick={onLogin}>
-          <img src={profilePic} alt="Profile" className="profile-pic" />
-          <p className="profile-name">Your Name</p>
-        </div>
+        {/* Profile row (image left, name right) */}
+        <button className="user-row" onClick={onLogin} aria-label="Login">
+          <img src={profilePic} alt="Profile" className="avatar" />
+          <span className="user-name">Your Name</span>
+        </button>
 
-        <div className="login-actions">
-          <button className="login-button restart">Restart</button>
-          <button className="login-button shutdown">Shut Down</button>
+        {/* Bottom actions */}
+        <div className="actions">
+          <div className="action">
+            <button className="circle-btn restart" aria-label="Restart"></button>
+            <div className="action-label">Restart</div>
+          </div>
+          <div className="action">
+            <button className="circle-btn shutdown" aria-label="Shut Down"></button>
+            <div className="action-label">Shut Down</div>
+          </div>
         </div>
       </div>
     </div>
@@ -30,4 +40,3 @@ const LoginScreen = ({ onLogin }) => {
 };
 
 export default LoginScreen;
-
