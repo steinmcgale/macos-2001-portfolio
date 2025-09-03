@@ -12,3 +12,10 @@ body {
 }
 
 
+body {
+  font-family: "Lucida Grande", -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+

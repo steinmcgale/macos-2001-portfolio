@@ -4,6 +4,7 @@ import "./LoginScreen.css";
 import background from "../Images/Background.png";
 import appleLogo from "../Images/apple-logo.png";
 import profilePic from "../Images/Stein no background.png"; 
+import macOsX from "../Images/Mac_OS_X- Edited.png"; 
 
 const LoginScreen = ({ onLogin }) => {
   return (
@@ -14,13 +15,13 @@ const LoginScreen = ({ onLogin }) => {
       <div className="login-box">
         {/* Apple + titles */}
         <img src={appleLogo} alt="Apple" className="login-apple-logo" />
-        <h1 className="system-title"><span className="mac-word">Mac</span> OS X</h1>
-        <div className="machine-name">Your Computer</div>
+        <img src={macOsX} alt="Mac" className="mac-title" />
+        <div className="machine-name">Think Different.</div>
 
         {/* Profile row (image left, name right) */}
         <button className="user-row" onClick={onLogin} aria-label="Login">
           <img src={profilePic} alt="Profile" className="avatar" />
-          <span className="user-name">Your Name</span>
+          <span className="user-name">Stein McGale</span>
         </button>
 
         {/* Bottom actions */}
