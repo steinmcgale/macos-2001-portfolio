@@ -11,7 +11,7 @@
 
 
 .login-box {
-  width: 450px; 
+  width: 425px; 
   min-height: 280px; 
   padding: 40px 50px 36px; 
   background:
@@ -35,7 +35,6 @@
 }
 
 
-/* Apple logo (keep aspect) */
 .login-apple-logo {
   width: 60px;
   height: auto;
@@ -53,35 +52,48 @@ margin: 0 auto 10px;
 
 /* Progress bar container */
 .progress-bar {
-  width: 60%;
+  width: 240px;
   height: 14px;
-  margin: 32px auto 12px; /* extra space below Mac OS X title */
-  background: #e0e0e0;
+  margin: 30px auto 10px;
+  background: #eee;
   border: 1px solid #aaa;
-  border-radius: 6px;
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.2);
   overflow: hidden;
-  position: relative;
 }
 
-/* Aqua blue fill */
 .progress-bar-fill {
   height: 100%;
-  width: 60%; /* you can animate this */
-  background: linear-gradient(
-    to bottom,
-    #66ccff 0%,   /* light aqua */
-    #0099ff 50%,  /* mid aqua */
-    #007acc 100%  /* deeper aqua */
-  );
-  border-radius: 6px 0 0 6px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-  transition: width 2s ease-in-out;
+  width: 0;
+  background: repeating-linear-gradient(
+      -45deg,
+      #66b2ff,
+      #66b2ff 6px,
+      #3399ff 6px,
+      #3399ff 12px
+    ); /* blue stripes */
+  background-size: 24px 24px;
+  animation: moveStripes 1s linear infinite; /* animated stripes */
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.8), /* glossy highlight */
+    inset 0 -1px rgba(0, 0, 0, 0.2);
+  transition: width 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+/* Animate the stripes to move */
+@keyframes moveStripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 0;
+  }
 }
 
 /* Welcome text */
 .welcome-text {
-  margin-top: 6px;
+  margin-top: 20px;
   font-size: 14px;
   color: #000;
 }

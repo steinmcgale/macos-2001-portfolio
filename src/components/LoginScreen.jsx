@@ -39,13 +39,13 @@ const LoginScreen = ({ onLogin }) => {
         {/* Progress bar */}
         <div className="progress-bar">
           <div
-            className="progress-fill"
+            className="progress-bar-fill"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
 
         {/* Welcome message */}
-        <p className="welcome-text">Welcome to Macintosh.</p>
+        <p className="welcome-text">Think Different.</p>
       </div>
     </div>
   );
