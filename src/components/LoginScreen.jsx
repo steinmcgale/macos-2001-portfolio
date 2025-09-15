@@ -5,26 +5,43 @@ import background from "../Images/Background.png";
 import appleLogo from "../Images/apple-logo.png";
 import macOsX from "../Images/Mac_OS_X- Edited.png";
 
+// Messages and the progress threshold they display until
+const messages = [
+  { text: "Welcome to Macintosh.", until: 30 },
+  { text: "Stein McGale's Desktop Installing.", until: 65 },
+  { text: "Think Different..", until: 100 },
+];
+
 const LoginScreen = ({ onLogin }) => {
   const [progress, setProgress] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
+  const [message, setMessage] = useState(messages[0].text); // 👈 active state for the welcome text
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setFadeOut(true); // trigger fade animation
-          setTimeout(() => {
-            if (onLogin) onLogin(); // go to desktop
-          }, 800); // match fade animation duration
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 80); // adjust speed of loading
-    return () => clearInterval(interval);
-  }, [onLogin]);
+  const interval = setInterval(() => {
+    setProgress((prev) => {
+      const increment = Math.random() > 0.7 ? 0 : 2; // sometimes pause
+      const next = prev + increment;
+
+      // Update the welcome message
+      const currentMessage =
+        messages.find((m) => next <= m.until)?.text || messages[messages.length - 1].text;
+      setMessage(currentMessage);
+
+      if (next >= 100) {
+        clearInterval(interval);
+        setFadeOut(true);
+        setTimeout(() => {
+          if (onLogin) onLogin();
+        }, 800);
+        return 100;
+      }
+      return next;
+    });
+  }, 80 + Math.floor(Math.random() * 40)); // add jitter to timing
+  return () => clearInterval(interval);
+}, [onLogin]);
+
 
   return (
     <div
@@ -44,8 +61,8 @@ const LoginScreen = ({ onLogin }) => {
           ></div>
         </div>
 
-        {/* Welcome message */}
-        <p className="welcome-text">Think Different.</p>
+        {/* Dynamic welcome message */}
+        <p className="welcome-text">{message}</p>
       </div>
     </div>
   );

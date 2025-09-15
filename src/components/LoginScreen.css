@@ -11,7 +11,7 @@
 
 
 .login-box {
-  width: 425px; 
+  width: 445px; 
   min-height: 280px; 
   padding: 40px 50px 36px; 
   background:
@@ -36,7 +36,7 @@
 
 
 .login-apple-logo {
-  width: 60px;
+  width: 80px;
   height: auto;
   display: block;
   margin: 0 auto 13px;
@@ -50,50 +50,77 @@ margin: 0 auto 10px;
 
 }
 
-/* Progress bar container */
+/* Progress bar wrapper */
 .progress-bar {
-  width: 240px;
-  height: 14px;
-  margin: 30px auto 10px;
-  background: #eee;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  box-shadow: inset 0 2px 3px rgba(0,0,0,0.2);
+  width: 80%;
+  height: 18px;
+  margin: 40px auto 0; /* more spacing from the logo */
+  border: 1px solid #999;
+  
+  background: linear-gradient(to bottom, #f4f4f4, #dcdcdc);
+  /* Bevel + inner shadows */
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.6);
   overflow: hidden;
+  position: relative;
 }
 
+/* Aqua fill */
 .progress-bar-fill {
   height: 100%;
   width: 0;
-  background: repeating-linear-gradient(
-      -45deg,
-      #66b2ff,
-      #66b2ff 6px,
-      #3399ff 6px,
-      #3399ff 12px
-    ); /* blue stripes */
-  background-size: 24px 24px;
-  animation: moveStripes 1s linear infinite; /* animated stripes */
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.8), /* glossy highlight */
-    inset 0 -1px rgba(0, 0, 0, 0.2);
-  transition: width 0.2s ease-in-out;
-  border-radius: 10px;
+  background: linear-gradient(to bottom, #4da6ff, #1e90ff);
+  
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Animate the stripes to move */
-@keyframes moveStripes {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 24px 0;
-  }
+/* Gloss highlight (top half) */
+.progress-bar-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.7),
+    rgba(255,255,255,0)
+  );
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  pointer-events: none;
 }
+
+/* Dark wave moving opposite to fill */
+.progress-bar-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 8px,
+    transparent 10px,
+    transparent 16px
+  );
+  animation: waveMove 1.8s linear infinite;
+  opacity: 0.25; /* keep it subtle */
+}
+
+/* Animation: wave flows right-to-left */
+@keyframes waveMove {
+  from { background-position: 0 0; }
+  to { background-position: -32px 0; }
+}
+
 
 /* Welcome text */
 .welcome-text {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 14px;
   color: #000;
 }
