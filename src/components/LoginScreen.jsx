@@ -7,15 +7,15 @@ import macOsX from "../Images/Mac_OS_X- Edited.png";
 
 // Messages and the progress threshold they display until
 const messages = [
-  { text: "Welcome to Macintosh.", until: 30 },
-  { text: "Stein McGale's Desktop Installing.", until: 65 },
-  { text: "Think Different..", until: 100 },
+  { text: "Welcome to Macintosh", until: 30 },
+  { text: "Stein McGale's Desktop Installing", until: 65 },
+  { text: "Think Different.", until: 100 },
 ];
 
 const LoginScreen = ({ onLogin }) => {
   const [progress, setProgress] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
-  const [message, setMessage] = useState(messages[0].text); // 👈 active state for the welcome text
+  const [message, setMessage] = useState(messages[0].text); // active state for the welcome text
 
   useEffect(() => {
   const interval = setInterval(() => {

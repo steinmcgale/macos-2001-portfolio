@@ -30,7 +30,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertically center inner content */
+  justify-content: center; 
   align-items: center;
 }
 

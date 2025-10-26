@@ -1,3 +1,4 @@
+// components/TopMenu
 import React, { useEffect, useState } from 'react';
 import './TopMenu.css';
 import appleLogo from '../Images/apple-logo.png';
