@@ -4,6 +4,10 @@ import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
 
 
+
+
+
+
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState([]);
 

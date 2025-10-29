@@ -1,0 +1,119 @@
+/* Host & shelf */
+.dock {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 100px; /* enough for ~96px max icons */
+  display: grid;
+  place-items: end center;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.dock-shelf {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: min(920px, 92%);
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.38), rgba(255,255,255,0.10));
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.30) inset,
+    0 10px 26px rgba(0,0,0,0.35),
+    0 2px 7px rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+/* Zones: app icons (left), separator, trash zone (right) */
+.dock-zones {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: end;
+  gap: 12px;
+  padding: 8px 16px 14px;
+  pointer-events: auto; /* interactive */
+}
+
+.dock-strip {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Vertical separator like in your screenshot */
+.dock-sep {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+  box-shadow: 1px 0 0 rgba(255,255,255,0.35) inset;
+  margin: 0 2px;
+}
+
+/* Items expand/contract with inline width */
+.dock-item {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  will-change: width;
+}
+
+.dock-item.trash-armed .dock-icon-wrap {
+  filter: drop-shadow(0 0 10px rgba(0,128,255,0.75));
+}
+
+/* Icon & reflection */
+.dock-icon-wrap {
+  position: relative;
+  transform-origin: bottom center;
+  cursor: default;
+}
+
+.dock-icon {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter:
+    drop-shadow(0 2px 1px rgba(0,0,0,0.35))
+    drop-shadow(0 10px 14px rgba(0,0,0,0.25));
+}
+
+/* Reflection length tuned to ~55% of icon */
+.dock-reflection {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transform: scaleY(-1);
+  opacity: 0.36;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 55%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 55%);
+  pointer-events: none;
+}
+
+/* Label bubble */
+.dock-label {
+  position: absolute;
+  bottom: 100%;
+  transform: translateY(-8px);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font: 12px/1 "Lucida Grande", "Segoe UI", Tahoma, sans-serif;
+  color: #111;
+  background: rgba(255,255,255,0.86);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+.dock-item:hover .dock-label,
+.dock-item:focus-within .dock-label {
+  opacity: 1;
+}
