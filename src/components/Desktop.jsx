@@ -1,12 +1,8 @@
-// src/components/Desktop.jsx
+// Desktop.jsx
 import React, { useState, useCallback } from "react";
 import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
-
-
-
-
-
+import Dock from "./Dock"; // ← you already added this
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState([]);
@@ -25,6 +21,7 @@ export default function Desktop() {
   return (
     <div className="desktop">
       <TopMenu onOpenWindow={handleOpenWindow} />
+
       {openWindows.map((win) => {
         switch (win.type) {
           case "about":
@@ -38,7 +35,10 @@ export default function Desktop() {
             return null;
         }
       })}
-      {/* <Dock onOpen={(type, title) => handleOpenWindow(type, title)} /> */}
+
+      {/* Use Dock here so the import isn’t unused */}
+      <Dock onOpenWindow={handleOpenWindow} />
     </div>
   );
 }
+
