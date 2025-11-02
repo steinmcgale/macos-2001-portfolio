@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from "react";
 import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
-import Dock from "./Dock"; // ← you already added this
+import Dock from "./Dock"; 
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState([]);

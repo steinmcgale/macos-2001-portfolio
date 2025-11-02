@@ -1,65 +1,71 @@
-/* Host & shelf */
+/* === knobs you can tweak === */
+:root {
+  --dock-gap: 21px;             /* space between icons */
+  --dock-side-pad: 18px;        /* glass margin left/right inside shelf */
+  --dock-shelf-width: 600px;    /* FIXED shelf length */
+  --dock-shelf-height: 56px;    /* FIXED shelf height (glass thickness) */
+}
+
+/* Dock host (stays at bottom) */
 .dock {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 100px; /* enough for ~96px max icons */
+  height: 110px;                /* enough headroom for magnified icons to rise above shelf */
   display: grid;
   place-items: end center;
   pointer-events: none;
   z-index: 8;
 }
 
-.dock-shelf {
-  position: absolute;
-  left: 50%;
-  bottom: 8px;
-  transform: translateX(-50%);
-  width: min(920px, 92%);
-  height: 56px;
-  border-radius: 16px;
+
+
+.dock-zones {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;        /* keep icons sitting on the shelf */
+  justify-content: center;      /* center icon groups inside the fixed shelf */
+  gap: var(--dock-gap);
+  width: var(--dock-shelf-width);
+  height: var(--dock-shelf-height);
+  padding: 0 var(--dock-side-pad);  /* horizontal padding only; height is fixed */
+  pointer-events: auto;
+
+  /* straight-edged Puma glass */
+  border-radius: 0;
   background: linear-gradient(to bottom, rgba(255,255,255,0.38), rgba(255,255,255,0.10));
   box-shadow:
     0 1px 0 rgba(255,255,255,0.30) inset,
     0 10px 26px rgba(0,0,0,0.35),
     0 2px 7px rgba(0,0,0,0.22);
   backdrop-filter: blur(10px);
-  pointer-events: none;
+
+  /* IMPORTANT: don't grow with content; let icons overflow up */
+  overflow: visible;
 }
 
-/* Zones: app icons (left), separator, trash zone (right) */
-.dock-zones {
-  position: relative;
-  display: grid;
-  grid-auto-flow: column;
-  align-items: end;
-  gap: 12px;
-  padding: 8px 16px 14px;
-  pointer-events: auto; /* interactive */
-}
-
+/* Left/right rows inside the fixed shelf */
 .dock-strip {
   display: flex;
-  align-items: end;
-  gap: 12px;
+  align-items: flex-end;
+  gap: var(--dock-gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Vertical separator like in your screenshot */
+/* Separator between app side and trash side */
 .dock-sep {
+  align-self: stretch;
   width: 1px;
-  height: 44px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
   box-shadow: 1px 0 0 rgba(255,255,255,0.35) inset;
-  margin: 0 2px;
 }
 
-/* Items expand/contract with inline width */
+/* Each item grows via inline width (set in JSX) */
 .dock-item {
   position: relative;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   will-change: width;
 }
@@ -68,13 +74,14 @@
   filter: drop-shadow(0 0 10px rgba(0,128,255,0.75));
 }
 
-/* Icon & reflection */
+/* Icon box; no transform-scaling (we're using size-based magnification) */
 .dock-icon-wrap {
   position: relative;
   transform-origin: bottom center;
   cursor: default;
 }
 
+/* Images sized by inline style (width/height = size) */
 .dock-icon {
   display: block;
   user-select: none;
@@ -84,7 +91,7 @@
     drop-shadow(0 10px 14px rgba(0,0,0,0.25));
 }
 
-/* Reflection length tuned to ~55% of icon */
+/* Reflection */
 .dock-reflection {
   position: absolute;
   bottom: -2px;
@@ -96,7 +103,7 @@
   pointer-events: none;
 }
 
-/* Label bubble */
+/* Labels */
 .dock-label {
   position: absolute;
   bottom: 100%;
@@ -112,8 +119,5 @@
   opacity: 0;
   transition: opacity 120ms ease-out;
 }
-
 .dock-item:hover .dock-label,
-.dock-item:focus-within .dock-label {
-  opacity: 1;
-}
+.dock-item:focus-within .dock-label { opacity: 1; }
