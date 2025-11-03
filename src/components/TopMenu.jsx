@@ -54,7 +54,7 @@ const TopMenu = ({ onOpenWindow }) => {
   
   const menuItems = {
     file: [
-      { label: 'About Me', action: () => handleDropdownClick('about', 'About Me') },
+      { label: 'About Me', action: () => handleDropdownClick('about me', 'About Me') },
       { label: 'My Resume', action: () => handleDropdownClick('resume', 'Resume') },
       
     ],
@@ -84,7 +84,7 @@ const TopMenu = ({ onOpenWindow }) => {
     <div className="osx-menu-bar">
       <div className="menu-left">
         <div className="apple-menu"
-        onClick={() => handleDropdownClick('about', 'About This Mac')}>
+        onClick={() => handleDropdownClick('aboutThisMac', 'About This Mac')}>
           <img src={appleLogo} alt="Apple" className="apple-logo" />
         </div>
         

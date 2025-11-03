@@ -2,7 +2,8 @@
 import React, { useState, useCallback } from "react";
 import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
-import Dock from "./Dock"; 
+import AboutMeWindow from "./AboutMeWindow";         
+import Dock from "./Dock";
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState([]);
@@ -24,9 +25,16 @@ export default function Desktop() {
 
       {openWindows.map((win) => {
         switch (win.type) {
-          case "about":
+          case "aboutThisMac":
             return (
               <AboutThisMacWindow
+                key={win.id}
+                onClose={() => handleCloseWindow(win.id)}
+              />
+            );
+          case "aboutMe":
+            return (
+              <AboutMeWindow
                 key={win.id}
                 onClose={() => handleCloseWindow(win.id)}
               />
@@ -36,7 +44,6 @@ export default function Desktop() {
         }
       })}
 
-      {/* Use Dock here so the import isn’t unused */}
       <Dock onOpenWindow={handleOpenWindow} />
     </div>
   );
