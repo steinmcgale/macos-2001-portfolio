@@ -1,44 +1,63 @@
-// Desktop.jsx
+// src/components/Desktop.jsx
 import React, { useState, useCallback } from "react";
 import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
-import AboutMeWindow from "./AboutMeWindow";         
 import Dock from "./Dock";
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState([]);
 
+  // Open a window; if it's already open, bring it to front
   const handleOpenWindow = useCallback((type, title) => {
     setOpenWindows((wins) => {
-      const exists = wins.some((w) => w.type === type);
-      return exists ? wins : [...wins, { id: Date.now(), type, title }];
+      const i = wins.findIndex((w) => w.type === type);
+      if (i === -1) return [...wins, { id: Date.now(), type, title }];
+      const next = wins.slice();
+      const [existing] = next.splice(i, 1);
+      next.push(existing); // move to top
+      return next;
     });
   }, []);
 
+  // Close by id
   const handleCloseWindow = useCallback((id) => {
     setOpenWindows((wins) => wins.filter((w) => w.id !== id));
+  }, []);
+
+  // Bring a window to front on click
+  const handleFocusWindow = useCallback((id) => {
+    setOpenWindows((wins) => {
+      const i = wins.findIndex((w) => w.id === id);
+      if (i === -1) return wins;
+      const next = wins.slice();
+      const [w] = next.splice(i, 1);
+      next.push(w);
+      return next;
+    });
   }, []);
 
   return (
     <div className="desktop">
       <TopMenu onOpenWindow={handleOpenWindow} />
 
-      {openWindows.map((win) => {
+      {openWindows.map((win, idx) => {
+        const z = 100 + idx; // simple stacking: last = top
         switch (win.type) {
           case "aboutThisMac":
             return (
-              <AboutThisMacWindow
+              <div
                 key={win.id}
-                onClose={() => handleCloseWindow(win.id)}
-              />
+                style={{ position: "relative", zIndex: z }}
+                onMouseDown={() => handleFocusWindow(win.id)}
+              >
+                <AboutThisMacWindow
+                  onClose={() => handleCloseWindow(win.id)}
+                />
+              </div>
             );
-          case "aboutMe":
-            return (
-              <AboutMeWindow
-                key={win.id}
-                onClose={() => handleCloseWindow(win.id)}
-              />
-            );
+
+          // add more cases as you build (aboutMe, resume, portfolio, etc.)
+
           default:
             return null;
         }
@@ -48,4 +67,6 @@ export default function Desktop() {
     </div>
   );
 }
+
+
 

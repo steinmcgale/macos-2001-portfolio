@@ -1,60 +1,55 @@
+/* Window chrome */
 .window {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;                 /* center to the viewport */
+  top: calc(50% - 40px);          /* 40px vertical offset for the menu bar */
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   width: 300px;
   height: 320px;
-     background: repeating-linear-gradient(
+  box-sizing: border-box; 
+
+  /* Aqua/Puma pinstripe chrome */
+  background: repeating-linear-gradient(
     0deg,
-    #f9f9f9,     /* lighter stripe */
+    #f9f9f9,
     #f9f9f9 1.5px,
-    #dcdcdc,     /* darker stripe */
+    #dcdcdc,
     #dcdcdc 3px
   );
+
   border: 1px solid #a0a0a0;
   border-radius: 6px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   z-index: 1000;
+
+  /* Prevent accidental animations of top/left/transform */
+  transition: none;
 }
 
-
+/* Titlebar */
 .window-header {
   height: 22px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #999;
+  justify-content: center; /* we’ll also absolutely center the title below */
   position: relative;
+  border-bottom: 1px solid #999;
   font-size: 13px;
   font-weight: bold;
   user-select: none;
+
   background: repeating-linear-gradient(
     0deg,
-    #f9f9f9,     /* lighter stripe */
+    #f9f9f9,
     #f9f9f9 1.5px,
-    #dcdcdc,     /* darker stripe */
+    #dcdcdc,
     #dcdcdc 3px
   );
 }
 
-
-.window-title {
-  margin-left: 8px;
-  font-size: 12px;
-}
-
-.close-button {
-  background: radial-gradient(circle at 30% 30%, #ff5f5f, #d10000);
-  border: 1px solid #a30000;
-  border-radius: 50%;
-  width: 13px;
-  height: 13px;
-  margin-left: 6px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-}
-
+/* Traffic lights group (left) */
 .window-buttons {
   display: flex;
   gap: 6px;
@@ -74,20 +69,34 @@
   padding: 0;
 }
 
+/* Close (red) */
 .window-button.red {
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), transparent 60%),
-              radial-gradient(circle at center, #ff5f57, #e33e41);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), transparent 60%),
+    radial-gradient(circle at center, #ff5f57, #e33e41);
   border: 1px solid #c33;
 }
 
-
+/* Inactive/clear */
 .window-button.clear {
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%),
-              rgba(255,255,255,0.15);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%),
+    rgba(255,255,255,0.15);
   border: 1px solid rgba(0,0,0,0.2);
 }
 
+/* Single, consistent title rule (remove duplicates) */
+.window-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+  color: #333;
+  font-size: 12px;
+}
 
+/* Content */
 .window-content {
   padding: 10px;
   text-align: center;
@@ -114,13 +123,7 @@
   margin-top: 10px;
 }
 
-.window-title {
-  position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  pointer-events: none;
-  color: #333;
-}
+
+
 
 

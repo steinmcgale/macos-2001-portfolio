@@ -54,7 +54,7 @@ const TopMenu = ({ onOpenWindow }) => {
   
   const menuItems = {
     file: [
-      { label: 'About Me', action: () => handleDropdownClick('about me', 'About Me') },
+      { label: 'About Me', action: () => handleDropdownClick('aboutme', 'AboutMe') },
       { label: 'My Resume', action: () => handleDropdownClick('resume', 'Resume') },
       
     ],
@@ -63,7 +63,7 @@ const TopMenu = ({ onOpenWindow }) => {
       { label: 'Theme Settings', action: () => handleDropdownClick('theme', 'Theme Settings') },
     ],
     view: [
-      { label: 'Portfolio', action: () => handleDropdownClick('Portfolio', 'Portfolio') },
+      { label: 'Portfolio', action: () => handleDropdownClick('portfolio', 'Portfolio') },
       
       { label: 'GitHub', action: () => handleDropdownClick('github', 'GitHub') },
      
