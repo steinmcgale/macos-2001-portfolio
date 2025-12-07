@@ -53,32 +53,29 @@ const TopMenu = ({ onOpenWindow }) => {
 
   
   const menuItems = {
-    file: [
-      { label: 'About Me', action: () => handleDropdownClick('aboutme', 'AboutMe') },
-      { label: 'My Resume', action: () => handleDropdownClick('resume', 'Resume') },
-      
-    ],
-    edit: [
-      { label: 'Change Background', action: () => handleDropdownClick('background', 'Desktop Settings') },
-      { label: 'Theme Settings', action: () => handleDropdownClick('theme', 'Theme Settings') },
-    ],
-    view: [
-      { label: 'Portfolio', action: () => handleDropdownClick('portfolio', 'Portfolio') },
-      
-      { label: 'GitHub', action: () => handleDropdownClick('github', 'GitHub') },
-     
-    ],
-    window: [
-      { label: 'QuickTime Player', action: () => handleDropdownClick('quicktime', 'QuickTime Player') },
-      { label: 'iTunes', action: () => handleDropdownClick('itunes', 'iTunes') },
-      { label: 'TextEdit', action: () => handleDropdownClick('textedit', 'TextEdit') },
-    ],
-    contact: [
-      { label: 'Send Email', action: () => handleDropdownClick('email', 'Send Email') },
-      { label: 'LinkedIn Profile', action: () => window.open('https://www.linkedin.com/in/stein-mcgale/', '_blank') },
-      
-    ]
-  };
+  file: [
+    { label: "About Me",   action: () => handleDropdownClick("aboutMe", "About Me") },
+    { label: "My Resume",  action: () => handleDropdownClick("resume",  "My Resume") },
+  ],
+  edit: [
+    { label: "Change Background", action: () => handleDropdownClick("background", "Desktop Settings") },
+    { label: "Theme Settings",    action: () => handleDropdownClick("theme",      "Theme Settings") },
+  ],
+  view: [
+    { label: "Portfolio", action: () => handleDropdownClick("portfolio", "Portfolio") },
+    { label: "GitHub",    action: () => handleDropdownClick("github",    "GitHub") },
+  ],
+  window: [
+    { label: "QuickTime Player", action: () => handleDropdownClick("quicktime", "QuickTime Player") },
+    { label: "iTunes",           action: () => handleDropdownClick("itunes",    "iTunes") },
+    { label: "TextEdit",         action: () => handleDropdownClick("textedit",  "TextEdit") },
+  ],
+  contact: [
+    { label: "Send Email",       action: () => handleDropdownClick("email", "Send Email") },
+    { label: "LinkedIn Profile", action: () => window.open("https://www.linkedin.com/in/stein-mcgale/", "_blank") },
+  ],
+};
+
 
   return (
     <div className="osx-menu-bar">

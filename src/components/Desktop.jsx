@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from "react";
 import TopMenu from "./TopMenu";
 import AboutThisMacWindow from "./AboutThisMacWindow";
+import AboutMeWindow from "./AboutMeWindow";
 import Dock from "./Dock";
 
 export default function Desktop() {
@@ -42,6 +43,7 @@ export default function Desktop() {
 
       {openWindows.map((win, idx) => {
         const z = 100 + idx; // simple stacking: last = top
+
         switch (win.type) {
           case "aboutThisMac":
             return (
@@ -56,7 +58,18 @@ export default function Desktop() {
               </div>
             );
 
-          // add more cases as you build (aboutMe, resume, portfolio, etc.)
+          case "aboutMe":
+            return (
+              <div
+                key={win.id}
+                style={{ position: "relative", zIndex: z }}
+                onMouseDown={() => handleFocusWindow(win.id)}
+              >
+                <AboutMeWindow
+                  onClose={() => handleCloseWindow(win.id)}
+                />
+              </div>
+            );
 
           default:
             return null;
@@ -67,6 +80,7 @@ export default function Desktop() {
     </div>
   );
 }
+
 
 
 
