@@ -1,32 +1,21 @@
-/* Window chrome */
+/* Base Aqua window (body is white) */
 .window {
-  position: fixed;                 /* center to the viewport */
-  top: calc(50% - 40px);          /* 40px vertical offset for the menu bar */
+  position: fixed;
+  top: calc(50% - 40px);
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 300px;
   height: 320px;
-  box-sizing: border-box; 
-
-  /* Aqua/Puma pinstripe chrome */
-  background: repeating-linear-gradient(
-    0deg,
-    #f9f9f9,
-    #f9f9f9 1.5px,
-    #dcdcdc,
-    #dcdcdc 3px
-  );
-
+  box-sizing: border-box;
+  background: #ffffff;                 
   border: 1px solid #a0a0a0;
   border-radius: 6px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.25), 0 2px 7px rgba(0,0,0,0.18);
   overflow: hidden;
   z-index: 1000;
-
-  /* Prevent accidental animations of top/left/transform */
   transition: none;
 }
+
 
 /* Titlebar */
 .window-header {
@@ -129,36 +118,37 @@
   height: 420px;
 }
 
-/* Optional toolbar row under the titlebar (matches early OS X look) */
+/* Finder-style toolbar (under titlebar) */
 .window-toolbar {
   height: 28px;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 0 10px;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      #f6f6fb 0px, #f6f6fb 1px,
-      #e9e9f6 1px, #e9e9f6 3px
-    );
+  background: repeating-linear-gradient(
+    0deg,
+    #f6f6fb 0px, #f6f6fb 1px,
+    #e9e9f6 1px, #e9e9f6 3px
+  );
   border-bottom: 1px solid rgba(0,0,0,0.15);
   user-select: none;
 }
 
-/* Scrollable content area.
-   Base window has only a titlebar (22px),
-   app windows may add a toolbar (28px). */
+/* Content: white + scrollable */
 .window-content {
-  /* keep your existing padding */
-  overflow: auto;                 /* <-- enable scrolling */
-  height: calc(100% - 22px);      /* titlebar only */
+  padding: 10px;
+  text-align: left;
+  color: #222;
+  background: #fff;                      /* ensure plain white */
+  overflow: auto;
+  height: calc(100% - 22px);             /* 22px = titlebar */
 }
 
-/* When a toolbar is present, content is shorter by 28px */
+/* If you render a toolbar, add 'with-toolbar' to the root window */
 .window.with-toolbar .window-content {
-  height: calc(100% - 22px - 28px);
+  height: calc(100% - 22px - 28px);      /* minus toolbar height */
 }
+
 
 /* Visual growbox hint (bottom-right), matches early OS X */
 .window-growbox {
@@ -185,20 +175,28 @@
   max-height: calc(100vh - 60px);
 }
 
-/* Optional: WebKit-style blue scrollbars for early OS X vibe */
+/* Aqua-like scrollbars */
 .window-content::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
+
 .window-content::-webkit-scrollbar-track {
-  background: #e3e7f7;
+  background: var(--aqua-track);
   border-left: 1px solid rgba(0,0,0,0.12);
 }
+
 .window-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(#8bb3ff, #4787ff);
+  background: linear-gradient(to bottom, #4da6ff, #1e90ff);
   border: 1px solid rgba(0,0,0,0.25);
   border-radius: 8px;
 }
+
+/* Optional: hover state for a bit more sheen */
+.window-content::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.05);
+}
+
 
 
 
